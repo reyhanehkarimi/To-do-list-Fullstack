@@ -1,0 +1,25 @@
+/* src/style/sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100%;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+  }
+  
+  .sidebar-column {
+    padding: 0;
+  }
+  
+  .dark {
+    color: black;
+    color: rgb(82, 236, 182);
+    color: rgb(246, 228, 125);
+    color: rgb(3, 74, 3);
+    color: rgb(135, 74, 1);
+  }
+
+  
+  

@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "_id": "1",
+      "title": "Complete Backend Homework",
+      "description": "Implement CRUD operations for directory and task collections",
+      "completed": false,
+      "important": true,
+      "deadline": "2024-10-20T00:00:00Z"
+    },
+    {
+      "_id": "2",
+      "title": "Frontend Design",
+      "description": "Build responsive layout for dashboard",
+      "completed": false,
+      "important": false,
+      "deadline": "2024-11-15T00:00:00Z"
+    },
+    {
+      "_id": "3",
+      "title": "Fix Authentication Bug",
+      "description": "Resolve login issues for admin accounts",
+      "completed": true,
+      "important": true,
+      "deadline": "2024-12-01T00:00:00Z"
+    }
+  ]
+}
