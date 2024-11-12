@@ -77,7 +77,7 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
             >
               <i
                 className={`bi bi-star${task.important ? '-fill' : ''}`}
-                style={{ color: task.important ? "red" : isFirstCard ? "white" : "black" }}  // برای کارت اول استار قرمز و بقیه مشکی است
+                style={{ color: task.important ? "red" : isFirstCard ? "white" : "black" }} 
               ></i>
             </button>
 

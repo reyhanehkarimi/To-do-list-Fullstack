@@ -39,7 +39,6 @@ function App() {
     <BrowserRouter>
       <Container fluid>
         <Row>
-          {/* سایدبار اصلی فقط در صفحه‌های بزرگ‌تر از 1022px */}
           {isLargeScreen && (
             <Col xs={3} className="sidebar-column">  
               <SideBar />
@@ -47,7 +46,6 @@ function App() {
           )}
           
           <Col xs={isLargeScreen ? 9 : 12} className="main-content">
-            {/* این کامپوننت تنها در اندازه‌های کوچکتر از 1022px نمایش داده می‌شود */}
             {!isLargeScreen && (
               <ResponsiveSideBar 
                 show={showResponsiveSidebar} 
