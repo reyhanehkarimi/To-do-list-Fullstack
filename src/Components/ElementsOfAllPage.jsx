@@ -25,7 +25,7 @@ function ElementsOfAllPage() {
     <>
       <Container style={{ display: "flex", justifyContent: "space-between",  }} className="mt-2 parent-header">
         <Form style={{display:"flex"}}>
-          <Form.Group className='search-input-header' style={{ position:"re",display:"flex"}}>
+          <Form.Group className='search-input-header' style={{ position:"relative",display:"flex"}}>
             <Form.Control
               style={{
                 backgroundColor: "rgba(241, 249, 250, 0.738)",

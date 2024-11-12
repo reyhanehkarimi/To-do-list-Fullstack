@@ -1,8 +1,7 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SideBar from './Components/SideBar';  
-import ResponsiveSideBar from './Components/ResponsiveSideBar'; // کامپوننت همبرگری جدید
+import ResponsiveSideBar from './Components/ResponsiveSideBar'; 
 import Home from './Pages/Home';  
 import { Container, Row, Col } from 'react-bootstrap'; 
 import ImportantTasks from './Pages/ImportantTasks';
@@ -47,6 +46,7 @@ function App() {
           
           <Col xs={isLargeScreen ? 9 : 12} className="main-content">
             {!isLargeScreen && (
+              
               <ResponsiveSideBar 
                 show={showResponsiveSidebar} 
                 handleClose={handleCloseSidebar} 
