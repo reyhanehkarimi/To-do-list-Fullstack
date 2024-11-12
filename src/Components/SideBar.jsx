@@ -3,12 +3,18 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import '../styles/sidebar.css';
 import EditModal from './EditModal';
+import EditModalNewDirectory from './ModalAddNewDirectory'
 
 function SideBar() {
   const [showModal, setShowModal] = useState(false);
+  const [showNewDirectoryModal, setShowNewDirectoryModal] = useState(false);
 
   const handleEditClick = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+  const handleNewDirectoryClick = () => setShowNewDirectoryModal(true);
+  const handleCloseNewDirectory = () => setShowNewDirectoryModal(false);
+
+  
 
   return (
     <div style={{ backgroundColor: "rgba(241, 249, 250, 0.738)" }} className="sidebar">
@@ -16,10 +22,10 @@ function SideBar() {
         To-Do List
       </h3>
       <Nav className="flex-column p-3">
-        <Button style={{ backgroundColor: "rgb(114, 69, 187)" }}>Add new task</Button>
+        <Button className='btn-add-task-sidebar' style={{ backgroundColor: "rgb(114, 69, 187)", border:"none" }}>Add new task</Button>
 
         <Nav.Item className="pb-3 pt-3">
-          <NavLink
+          <NavLink 
             style={({ isActive }) =>
               isActive
                 ? {
@@ -35,7 +41,7 @@ function SideBar() {
                 : { textDecoration: "none", color: "black" }
             }
             to="/"
-            className="dark"
+            className="nav-link-item"
           >
             All tasks
           </NavLink>
@@ -58,6 +64,8 @@ function SideBar() {
                 : { textDecoration: "none", color: "black" }
             }
             to="/important-tasks"
+            className="nav-link-item"
+
           >
             Important tasks
           </NavLink>
@@ -80,6 +88,8 @@ function SideBar() {
                 : { textDecoration: "none", color: "black" }
             }
             to="/completed-tasks"
+            className="nav-link-item"
+
           >
             Completed tasks
           </NavLink>
@@ -102,6 +112,8 @@ function SideBar() {
                 : { textDecoration: "none", color: "black" }
             }
             to="/uncompleted-tasks"
+            className="nav-link-item"
+
           >
             Uncompleted tasks
           </NavLink>
@@ -109,26 +121,28 @@ function SideBar() {
 
         <Nav.Item className="pb-1">
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ backgroundColor: "transparent", color: "black", border: "none", padding: "0" }}>
+            <Dropdown.Toggle  className="nav-link-item"  style={{ backgroundColor: "transparent", color: "black", border: "none", padding: "0" }}>
               Directories
             </Dropdown.Toggle>
 
             <Dropdown.Menu style={{ border: "none", backgroundColor: "transparent" }}>
-              <Dropdown.Item style={{ fontSize: '15px', paddingBottom: '5px', display: 'flex', justifyContent: 'space-between' }}>
+              <Dropdown.Item className='nav-link-item' as={NavLink} to="/secondary-directory" style={{color:"black", fontSize: '15px', paddingBottom: '5px', display: 'flex', justifyContent: 'space-between',backgroundColor: "transparent" }}>
                 Secondary
                 <div style={{ display: 'flex', marginLeft: '5rem' }}>
                   <button onClick={handleEditClick} style={{ border: "none", backgroundColor: "transparent" }}>
-                    <i className="bi bi-pencil-square"></i>
+                    <i className="bi bi-pencil-square nav-link-item"></i>
                   </button>
                   <button style={{ border: "none", backgroundColor: "transparent" }}>
-                    <i className="bi bi-trash3"></i>
+                    <i className="bi bi-trash3 nav-link-item"></i>
                   </button>
                 </div>
               </Dropdown.Item>
 
-              <Dropdown.Item style={{ fontSize: '15px', paddingBottom: "5px" }}>Main</Dropdown.Item>
-              <Dropdown.Item>
-                <Button style={{ fontSize: '10px', border: "dashed 1px", backgroundColor: "transparent", color: "black", textAlign: 'left' }}>
+              <Dropdown.Item className="nav-link-item" as={NavLink} to="/main-directory" style={{ color:"black", fontSize: '15px', paddingBottom: "5px", backgroundColor: "transparent" }}>
+              Main
+              </Dropdown.Item> 
+              <Dropdown.Item style={{backgroundColor: "transparent"}}>
+                <Button onClick={handleNewDirectoryClick} className='new-btn-dropdown' style={{ fontSize: '13px', border: "dashed 2px rgba(0, 0, 0, 0.429)", backgroundColor: "transparent", color: "black", textAlign: 'left', opacity:"0.8" }}>
                   + New
                 </Button>
               </Dropdown.Item>
@@ -137,7 +151,7 @@ function SideBar() {
         </Nav.Item>
       </Nav>
       <EditModal show={showModal} handleClose={handleClose} />
-    </div>
+      <EditModalNewDirectory show={showNewDirectoryModal} handleClose={handleCloseNewDirectory} /></div>
   );
 }
 

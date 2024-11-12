@@ -1,4 +1,3 @@
-/* src/style/sidebar.css */
 .sidebar {
     position: fixed;
     top: 0;
@@ -21,5 +20,24 @@
     color: rgb(135, 74, 1);
   }
 
+  .btn-add-task-sidebar:hover {
+    background-color: rgb(130, 91, 192) !important;
+  }
+   
+  .add-new-task-header:hover{
+    background-color: rgb(130, 91, 192) !important;
+
+  }
   
-  
+  .nav-link-item:hover,
+  .nav-link-item:active {
+    color: rgb(179, 3, 3) !important;
+  }
+
+
+@media (max-width: 768px) {
+  .Dropdown.Toggle {
+    width: 100px !important;
+    right: 15rem !important;
+  }
+}

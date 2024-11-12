@@ -1,10 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import AllTasksCard from "../Components/AllTasksCard";
-import "../styles/home.css";
-
-
-function Home() {
+function MainDirectoryPage() {
   const tasks = useSelector(state => state.tasks);
 
   return (
@@ -14,4 +11,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MainDirectoryPage

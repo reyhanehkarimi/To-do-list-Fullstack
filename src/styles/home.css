@@ -1,4 +1,4 @@
 body {
-    background-color: rgba(201, 206, 250, 0.526);
+    background-color: rgba(201, 206, 250, 0.526) !important;
     /* color: rgba(241, 249, 250, 0.738); */
 }

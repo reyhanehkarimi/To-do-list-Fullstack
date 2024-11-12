@@ -1,7 +1,8 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
+// App.js
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SideBar from './Components/SideBar';  
+import ResponsiveSideBar from './Components/ResponsiveSideBar'; // کامپوننت همبرگری جدید
 import Home from './Pages/Home';  
 import { Container, Row, Col } from 'react-bootstrap'; 
 import ImportantTasks from './Pages/ImportantTasks';
@@ -9,29 +10,60 @@ import CompletedTasks from './Pages/CompletedTasks';
 import UncompletedTasks from './Pages/UncompletedTasks';
 import ElementsOfAllPage from './Components/ElementsOfAllPage';
 import EditModal from './Components/EditModal';
+import MainDirectoryPage from './Pages/MainDirectoryPage';
+import SecondaryPage from './Pages/SecondaryPage';
+import './index.css'
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  
+  const handleShowSidebar = () => setShowResponsiveSidebar(true);
+  const handleCloseSidebar = () => setShowResponsiveSidebar(false);
+
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1022);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 1022);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <BrowserRouter>
       <Container fluid>
         <Row>
-          <Col xs={3} className="sidebar-column">  
-            <SideBar />
-          </Col>
+          {/* سایدبار اصلی فقط در صفحه‌های بزرگ‌تر از 1022px */}
+          {isLargeScreen && (
+            <Col xs={3} className="sidebar-column">  
+              <SideBar />
+            </Col>
+          )}
           
-          <Col xs={9} className="main-content"> 
+          <Col xs={isLargeScreen ? 9 : 12} className="main-content">
+            {/* این کامپوننت تنها در اندازه‌های کوچکتر از 1022px نمایش داده می‌شود */}
+            {!isLargeScreen && (
+              <ResponsiveSideBar 
+                show={showResponsiveSidebar} 
+                handleClose={handleCloseSidebar} 
+                handleShow={handleShowSidebar} 
+              />
+            )}
+            
             <ElementsOfAllPage onEditClick={handleShowModal} /> 
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/important-tasks" element={<ImportantTasks />} />
               <Route path="/completed-tasks" element={<CompletedTasks />} />
               <Route path="/uncompleted-tasks" element={<UncompletedTasks />} />
+              <Route path="/main-directory" element={<MainDirectoryPage />} />
+              <Route path="/secondary-directory" element={<SecondaryPage />} />
             </Routes>
           </Col>
         </Row>
