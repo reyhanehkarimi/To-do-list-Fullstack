@@ -1,4 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: rgba(201, 206, 250, 0.526) !important;
-    /* color: rgba(241, 249, 250, 0.738); */
 }
+
+body.dark-mode {
+    background-color: #11012f !important;
+    color: rgba(241, 249, 250, 0.738);
+}
+

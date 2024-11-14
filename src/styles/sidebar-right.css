@@ -1,0 +1,76 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.sidebar-right {
+    background-color: rgba(241, 249, 250, 0.738);
+    height: 100%;
+    width: 270px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: black;
+    transition: background-color 0.3s ease;
+    padding: 0;
+    padding-top: 10px;
+}
+
+.sidebar-right.dark-mode {
+    background-color: #11012f; 
+    color: white;
+}
+
+.text-sidebar.dark-mode {
+    color: white !important;
+}
+
+.toggle-button {
+    width: 50px;
+    height: 25px;
+    background-color: #333333;
+    border: none;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.toggle-button.light {
+    background-color: #ccc;
+}
+
+.toggle-button.dark {
+    background-color: #333;
+}
+
+.toggle-circle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2.5px;
+    left: 3px;
+    transition: all 0.3s ease;
+}
+
+.toggle-button.dark .toggle-circle {
+    left: 25px;
+}
+
+.delete-text.dark-mode {
+color: white;
+}
+
+.create-btn.dark-mode {
+   background-color: #20174dac !important;
+   color: white !important;
+}

@@ -1,9 +1,12 @@
+/*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import SideBar from './Components/SideBar';  
 import ResponsiveSideBar from './Components/ResponsiveSideBar'; 
+import SideBarRight from './Components/SideBarRightPage';  
 import Home from './Pages/Home';  
-import { Container, Row, Col } from 'react-bootstrap'; 
 import ImportantTasks from './Pages/ImportantTasks';
 import CompletedTasks from './Pages/CompletedTasks';
 import UncompletedTasks from './Pages/UncompletedTasks';
@@ -11,7 +14,7 @@ import ElementsOfAllPage from './Components/ElementsOfAllPage';
 import EditModal from './Components/EditModal';
 import MainDirectoryPage from './Pages/MainDirectoryPage';
 import SecondaryPage from './Pages/SecondaryPage';
-import './index.css'
+import './index.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -36,17 +39,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Container fluid>
-        <Row>
+      <Container fluid style={{ padding: 0, margin: "0 auto", width: "100%" }}>
+        <Row noGutters style={{ margin: 0, width: "100%" }}>
+
           {isLargeScreen && (
-            <Col xs={3} className="sidebar-column">  
+            <Col xs={2} className="sidebar-column" style={{ padding: 0 }}>
               <SideBar />
             </Col>
           )}
-          
-          <Col xs={isLargeScreen ? 9 : 12} className="main-content">
+
+          <Col xs={isLargeScreen ? 8 : 12} className="main-content" style={{ padding: 0 }}>
             {!isLargeScreen && (
-              
               <ResponsiveSideBar 
                 show={showResponsiveSidebar} 
                 handleClose={handleCloseSidebar} 
@@ -54,7 +57,7 @@ function App() {
               />
             )}
             
-            <ElementsOfAllPage onEditClick={handleShowModal} /> 
+            <ElementsOfAllPage onEditClick={handleShowModal} />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/important-tasks" element={<ImportantTasks />} />
@@ -64,9 +67,15 @@ function App() {
               <Route path="/secondary-directory" element={<SecondaryPage />} />
             </Routes>
           </Col>
+
+          {isLargeScreen && (
+            <Col xs={3} className="sidebar-right-column" style={{ padding: 0 }}>
+              <SideBarRight />
+            </Col>
+          )}
         </Row>
       </Container>
-      <EditModal show={showModal} handleClose={handleCloseModal} /> 
+      <EditModal show={showModal} handleClose={handleCloseModal} />
     </BrowserRouter>
   );
 }

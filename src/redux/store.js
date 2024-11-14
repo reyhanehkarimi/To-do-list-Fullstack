@@ -1,9 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import taskReducer from "./tasksSlice";
-const store = configureStore({
-    reducer:{
-        tasks: taskReducer,
-    }
-})
+// // store.js
+// import { configureStore } from '@reduxjs/toolkit';
+// import darkModeReducer from './darkModeSlice';
+// import tasksReducer from './tasksSlice'
 
-export default store;
+// const store = configureStore({
+//   reducer: {
+//     tasks: tasksReducer,
+//     darkMode: darkModeReducer,
+
+//   },
+// });
+
+
+// export default store;

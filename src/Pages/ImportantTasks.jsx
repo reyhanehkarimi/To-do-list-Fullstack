@@ -7,7 +7,6 @@ function ImportantTasks() {
 
   return (
     <div>
-      <h3>Important Tasks</h3>
       <AllTasksCard tasks={importantTasks} />
     </div>
   );

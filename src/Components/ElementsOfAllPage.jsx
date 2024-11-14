@@ -23,7 +23,8 @@ function ElementsOfAllPage() {
 
   return (
     <>
-      <Container style={{ display: "flex", justifyContent: "space-between",  }} className="mt-2 parent-header">
+    <div></div>
+      <Container style={{ display: "flex", justifyContent: "space-between",marginLeft:"1rem"  }} className="mt-2 parent-header">
         <Form style={{display:"flex"}}>
           <Form.Group className='search-input-header' style={{ position:"relative",display:"flex"}}>
             <Form.Control
@@ -60,12 +61,17 @@ function ElementsOfAllPage() {
         <div  style={{display:"flex"}}>{formattedDate}</div>
         <Button
           className='add-new-task-header'
-          style={{ position: "absolute",backgroundColor: "rgb(114, 69, 187)", width: "160px", height: "37.6px", marginRight: "9rem", position: "relative", border: "none" }}
-          onClick={handleShowModal} 
+          style={{
+            backgroundColor: "rgb(114, 69, 187)",
+            width: "160px",
+            height: "37.6px",
+            border: "none",
+            marginRight:"2rem"
+          }}onClick={handleShowModal} 
         >
           Add new task
         </Button>
-          <Dropdown  className='Dropdown.Toggle' style={{ position: "absolute",top:"3.4rem", right: "10.5rem",width:"auto", height:"auto" }}>
+          <Dropdown  className='Dropdown.Toggle' style={{ position: "absolute",top:"2.8rem", right: "17.8rem",width:"auto", height:"auto" }}>
             <Dropdown.Toggle  style={{ backgroundColor: "rgba(241, 249, 250, 0.738)", color: "black", border: "none", paddingRight: "60px", paddingLeft: "35px", marginTop: "2.5rem", textAlign: "center" }}>
               Sort by
             </Dropdown.Toggle>
@@ -81,7 +87,7 @@ function ElementsOfAllPage() {
           </Dropdown>
       </Container>
 
-      <Container className='below-header' style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", marginTop: "2rem" }}>
+      <Container className='below-header' style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", marginTop: "2rem",marginLeft:"1rem" }}>
         <h4 className='count-task' style={{ marginLeft: "0.8rem" }}>All tasks</h4>
 
         <div style={{ display: "flex", marginLeft: "0.8rem", marginTop: "1rem", marginBottom: "1rem" }}>

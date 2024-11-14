@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import AllTasksCard from "../Components/AllTasksCard";
-import "../styles/home.css";
+import Home from './Home';
+import '../styles/home.css';
+import '../styles/sidebar-right.css'
 
+function App() {
+  const isDarkMode = useSelector(state => state.darkMode.isDarkMode);
 
-function Home() {
-  const tasks = useSelector(state => state.tasks);
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
 
-  return (
-    <>
-      <AllTasksCard tasks={tasks} />
-    </>
-  );
+  return <Home />;
 }
 
-export default Home;
+export default App;

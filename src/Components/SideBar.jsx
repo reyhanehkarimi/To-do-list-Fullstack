@@ -128,7 +128,7 @@ function SideBar() {
             <Dropdown.Menu style={{ border: "none", backgroundColor: "transparent" }}>
               <Dropdown.Item className='nav-link-item' as={NavLink} to="/secondary-directory" style={{color:"black", fontSize: '15px', paddingBottom: '5px', display: 'flex', justifyContent: 'space-between',backgroundColor: "transparent" }}>
                 Secondary
-                <div style={{ display: 'flex', marginLeft: '5rem' }}>
+                <div style={{ display: 'flex'}}>
                   <button onClick={handleEditClick} style={{ border: "none", backgroundColor: "transparent" }}>
                     <i className="bi bi-pencil-square nav-link-item"></i>
                   </button>

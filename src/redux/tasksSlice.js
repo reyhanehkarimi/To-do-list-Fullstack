@@ -29,7 +29,9 @@ const initialTasks = [
     directory: 'Main',
   },
   
+  
 ];
+
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -46,6 +48,9 @@ const tasksSlice = createSlice({
       if (task) {
         task.important = !task.important;
       }
+    },
+    toggleDarkMode: (state) => {
+      state.isDarkMode = !state.isDarkMode;
     },
   },
 });
