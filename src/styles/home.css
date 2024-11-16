@@ -2,14 +2,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-body {
+  }
+  
+  body {
     background-color: rgba(201, 206, 250, 0.526) !important;
-}
-
-body.dark-mode {
-    background-color: #11012f !important;
+  }
+  
+  body.dark-mode {
+    background-color: #180e2b !important;
     color: rgba(241, 249, 250, 0.738);
-}
-
+  }
+  

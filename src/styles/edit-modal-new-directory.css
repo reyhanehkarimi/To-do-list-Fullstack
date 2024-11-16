@@ -1,0 +1,12 @@
+/* استایل دارک مود برای placeholder */
+.dark-placeholder::placeholder {
+    color: white;  /* رنگ placeholder در دارک مود */
+  }
+  
+  /* استایل لایت مود برای placeholder */
+  .light-placeholder::placeholder {
+    color: rgba(0, 0, 0, 0.6);  /* رنگ placeholder در لایت مود */
+  }
+
+
+  

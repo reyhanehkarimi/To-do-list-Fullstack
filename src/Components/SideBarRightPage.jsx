@@ -33,7 +33,7 @@ function SideBarRight() {
                     <p>All tasks</p>
                     <span>2/3</span>
                 </div>
-                <ProgressBar style={{height:"10px"}} now={60} />
+                <ProgressBar now={60} style={{ height: "10px" }}  className="custom-progress-bar"/>
             </div>
             <div style={{ marginTop: "auto", width: "100%", display: "flex", flexDirection: "column",paddingRight:"25px", paddingLeft:"25px", paddingBottom:"10px" }}>
                 <p className='delete-text' style={{opacity:"0.8"}}>Delete all data</p>

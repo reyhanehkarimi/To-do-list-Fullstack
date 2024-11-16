@@ -1,7 +1,7 @@
 /* Base Styles */
-body{
+/* body{
     background-color: brown;
-}
+} */
   @media ( max-width: 1088) {
     .parent-card:nth-child(3) .card-body {
         margin-top: 0.5rem; 

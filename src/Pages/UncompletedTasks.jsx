@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import AllTasksCard from "../Components/AllTasksCard";
 
-function Home() {
+function uncompletedTasks() {
   const tasks = useSelector(state => state.tasks); 
   const uncompletedTasks = tasks.filter(task => !task.completed); 
 
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default uncompletedTasks;

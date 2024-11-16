@@ -1,0 +1,108 @@
+.dark-mode {
+    background-color: rgba(33, 37, 41, 0.7);
+    color: white;
+  }
+  
+  .dark-mode-input {
+    background-color: rgba(33, 37, 41, 0.7);
+    color: white;
+    border: 1px solid #444;
+  }
+  
+  .dark-mode .Dropdown.Toggle-header,
+  .dark-mode .dropdown-menu {
+    background-color: rgba(33, 37, 41, 0.8);
+    color: black;
+  }
+  
+  .dark-mode .search-icon {
+    color: white;
+  }
+  
+  
+  .light-mode .light-mode-input {
+    background-color: rgba(241, 249, 250, 0.737) !important;
+    color: black;
+    border: 1px solid transparent;
+  }
+  
+  /* استایل برای حالت دارک مود */
+  .dark-mode .light-mode-input {
+    background-color: #20174dac !important;
+    color: white !important;
+    /* border: 1px solid #444; */
+  }
+  
+  .light-mode .Dropdown.Toggle-header,
+  .light-mode .dropdown-menu-header {
+    background-color: rgba(241, 249, 250, 0.738);
+    color: white !important;
+  }
+  
+  .dark-mode .Dropdown.Toggle-header,
+  .dark-mode .dropdown-menu-header {
+    background-color: #20174dac !important;
+    color: white !important;
+  }
+  
+  .light-mode .search-icon {
+    color: black !important;
+  }
+  
+  .dark-mode .search-icon {
+    color: white !important;
+  }
+  
+  .dark-mode .light-mode-input::placeholder {
+    color: white !important; /* تغییر رنگ placeholder به سفید در حالت dark mode */
+  }
+  
+  /* حالت دارک مود */
+  .dark-mode .dropdown-toggle-header {
+    background-color: #20174dac  !important  ;
+    color: white !important;
+  }
+  
+  .dark-mode .dropdown-menu-header {
+    background-color: #20174dac  !important;
+    color: white !important;
+  }
+  .dark-mode .dropdown-menu:hover {
+    background-color: #20174dac  !important;
+    color: rgba(255, 255, 255, 0.259) !important;
+  }
+  
+  .dark-mode .dropdown-sort {
+    color: white !important;
+  }
+  
+  /* حالت لایت مود */
+  .light-mode .dropdown-toggle {
+    background-color: rgba(241, 249, 250, 0.738);
+    color: black !important;
+  }
+  
+  .dark-mode .dropdown-toggle {
+    background-color: rgba(241, 249, 250, 0.738);
+    color: white !important;
+  }
+  
+  .dark-mode .dropdown-sort {
+    color: white !important;
+  }
+  .dark-mode .dropdown-sort:hover {
+    background-color: rgb(114, 69, 187) !important;
+    color: white !important;
+  }
+  
+  
+  
+  .light-mode .dropdown-menu {
+    background-color: rgba(241, 249, 250, 0.738);
+    color: black;
+  }
+  
+  .light-mode .dropdown-sort {
+    color: black;
+  }
+  
