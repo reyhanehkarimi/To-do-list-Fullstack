@@ -25,12 +25,12 @@ function SideBar() {
 
   const linkStyle = (isActive) => ({
     color: isActive
-      ? (isDarkMode ? "white" : "red") // For active links, white in dark mode, red in light mode
-      : (isDarkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(33, 37, 41, 0.8)"), // Inactive links color
+      ? (isDarkMode ? "white" : "red") 
+      : (isDarkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(33, 37, 41, 0.8)"), 
     textDecoration: "none",
     backgroundColor: isActive
-      ? (isDarkMode ? "#20174dac" : "rgba(172, 146, 146, 0.1)") // Background color when active in dark mode
-      : "transparent", // No background for inactive links
+      ? (isDarkMode ? "#20174dac" : "rgba(172, 146, 146, 0.1)") 
+      : "transparent", 
     width: "100%",
     height: "40px",
     display: "block",
@@ -96,12 +96,12 @@ function SideBar() {
             <Dropdown.Menu className="nav-link-item-drop" style={{ border: "none", backgroundColor: "transparent" }}>
               <Dropdown.Item className='nav-link-item nav-link-item-drop' as={NavLink} to="/secondary-directory" style={{ color: "black", fontSize: '15px', paddingBottom: '5px', display: 'flex', justifyContent: 'space-between', backgroundColor: "transparent" }}>
                 Secondary
-                <div style={{ display: 'flex' }}>
-                  <button onClick={handleEditClick} style={{ border: "none", backgroundColor: "transparent" }}>
-                    <i className="bi bi-pencil-square nav-link-item nav-link-item-drop"></i>
+                <div style={{ display: 'flex', justifyContent:"right" }}>
+                  <button  onClick={handleEditClick} style={{ border: "none", backgroundColor: "transparent" }}>
+                    <i className="bi bi-pencil-square nav-link-item nav-link-item-drop edit-icon"></i>
                   </button>
                   <button style={{ border: "none", backgroundColor: "transparent" }}>
-                    <i className="bi bi-trash3 nav-link-item"></i>
+                    <i className="bi bi-trash3 nav-link-item trash-drop-icon"></i>
                   </button>
                 </div>
               </Dropdown.Item>

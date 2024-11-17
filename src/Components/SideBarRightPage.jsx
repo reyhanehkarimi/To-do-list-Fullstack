@@ -1,4 +1,3 @@
-// SideBarRight.js
 import React from 'react';
 import "../styles/sidebar-right.css";
 import { ProgressBar } from 'react-bootstrap';

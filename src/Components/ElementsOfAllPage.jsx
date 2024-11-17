@@ -32,13 +32,13 @@ function ElementsOfAllPage() {
   };
 
   const handleToggleDarkMode = () => {
-    dispatch(toggleDarkMode());  // تغییر وضعیت دارک مود
+    dispatch(toggleDarkMode());  
   };
 
   const cardStyle = currentStyle === 'list' ? 'list-style-class' : 'grid-style-class';
 
   return (
-    <div className={darkMode ? 'dark-mode' : 'light-mode'} > {/* افزودن کلاس دارک مود یا لایت مود */}
+    <div className={darkMode ? 'dark-mode' : 'light-mode'} > 
       <Container style={{ display: "flex", justifyContent: "space-between", marginLeft: "1rem" }} className="mt-2 parent-header">
       <Form style={{ display: "flex" }}>
   <Form.Group

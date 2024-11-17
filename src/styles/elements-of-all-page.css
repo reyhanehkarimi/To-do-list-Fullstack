@@ -26,11 +26,9 @@
     border: 1px solid transparent;
   }
   
-  /* استایل برای حالت دارک مود */
   .dark-mode .light-mode-input {
     background-color: #20174dac !important;
     color: white !important;
-    /* border: 1px solid #444; */
   }
   
   .light-mode .Dropdown.Toggle-header,
@@ -54,10 +52,9 @@
   }
   
   .dark-mode .light-mode-input::placeholder {
-    color: white !important; /* تغییر رنگ placeholder به سفید در حالت dark mode */
+    color: white !important; 
   }
   
-  /* حالت دارک مود */
   .dark-mode .dropdown-toggle-header {
     background-color: #20174dac  !important  ;
     color: white !important;
@@ -76,7 +73,6 @@
     color: white !important;
   }
   
-  /* حالت لایت مود */
   .light-mode .dropdown-toggle {
     background-color: rgba(241, 249, 250, 0.738);
     color: black !important;

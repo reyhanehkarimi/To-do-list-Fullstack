@@ -24,6 +24,14 @@
   transition: background-color 0.3s ease, color 0.3s ease;  
 }
 
+.edit-icon:hover {
+  color: red !important;
+}
+.trash-drop-icon:hover {
+  color: red !important;
+
+}
+
 .sidebar.dark-mode {
   background-color: #11012f; 
   color: #ecf0f1 !important; 
@@ -36,17 +44,17 @@
 
 .sidebar.dark-mode .nav-link-item:hover,
 .sidebar.dark-mode .nav-link-item:active {
-  /* background-color: rgba(172, 146, 146, 0.281); */
   background-color:#180e2b !important;
   background-color:#493a64 !important;
 }
 
-/* .sidebar.dark-mode .btn-add-task-sidebar:hover {
-  background-color: white !important;
-} */
 
 .sidebar.dark-mode .add-new-task-header:hover {
   background-color: rgb(130, 91, 192) !important;
+}
+
+.new-btn-dropdown:hover{
+  color: red !important;
 }
 
 .sidebar.dark-mode .new-btn-dropdown {
@@ -55,19 +63,6 @@
   opacity: 1; 
 }
 
-/* sidebar.css */
-
-
-/* .dark-mode .Dropdown.Toggle {
-  background-color: red;
-  color: #ffffff;
-}
-
-.dark-mode .Dropdown.Menu {
-  background-color: #333333;
-} */
-
-/* استایل‌های برای دارک مود */
 .dark-mode {
   background-color: rgba(33, 37, 41, 0.7);
   color: white;
@@ -96,11 +91,9 @@
   border: 1px solid transparent;
 }
 
-/* استایل برای حالت دارک مود */
 .dark-mode .light-mode-input {
   background-color: #20174dac !important;
   color: white !important;
-  /* border: 1px solid #444; */
 }
 
 .light-mode .dropdown-toggle,
@@ -124,10 +117,8 @@
 }
 
 .dark-mode .light-mode-input::placeholder {
-  color: white !important; /* تغییر رنگ placeholder به سفید در حالت dark mode */
-}
+  color: white !important; 
 
-/* حالت دارک مود */
 .dark-mode .dropdown-toggle {
   background-color: #20174dac  !important  ;
   color: white !important;
@@ -146,7 +137,6 @@
   color: white !important;
 }
 
-/* حالت لایت مود */
 .light-mode .dropdown-toggle {
   background-color: rgba(241, 249, 250, 0.738);
   color: black !important;

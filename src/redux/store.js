@@ -1,4 +1,3 @@
-// store.js
 import { configureStore } from "@reduxjs/toolkit";
 import darkModeReducer from "./darkModeSlice";
 import tasksReducer from "./tasksSlice";

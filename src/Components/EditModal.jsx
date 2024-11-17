@@ -6,7 +6,6 @@ import '../styles/edit-modal.css';
 function EditModal({ show, handleClose }) {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
 
-  // استایل‌های مخصوص دارک مود و لایت مود
   const modalHeaderStyle = {
     backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
     padding: "10px",
@@ -22,7 +21,7 @@ function EditModal({ show, handleClose }) {
     backgroundColor: isDarkMode ? "#20174dac" : "white",
     border: isDarkMode ? "2px solid rgba(120, 53, 153, 0.485)" : "2px solid rgba(120, 53, 153, 0.485)",
     marginBottom: "0",
-    color: isDarkMode ? "white" : "black", // رنگ متن تغییر کرد
+    color: isDarkMode ? "white" : "black", 
   };
 
   const buttonStyle = {

@@ -13,7 +13,7 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
   const year = deadlineDate.getFullYear();
 
   useEffect(() => {
-    console.log("Dark mode:", isDarkMode); // بررسی مقدار isDarkMode
+     isDarkMode; 
   }, [isDarkMode]);
 
   const isFirstCard = index === 0;
@@ -40,12 +40,12 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
     backgroundColor: isFirstCard
       ? "rgb(114, 69, 187)"
       : isDarkMode
-      ? "#11012f"  // Dark background for dark mode
+      ? "#11012f"  
       : "rgba(241, 249, 250, 0.738)",
-    color: isFirstCard ? "white" : isDarkMode ? "#f1f9fa" : "black", // Text color for dark mode
+    color: isFirstCard ? "white" : isDarkMode ? "#f1f9fa" : "black", 
     borderRadius: "10px",
     boxShadow: isDarkMode
-      ? "0 4px 6px rgba(255, 255, 255, 0.1)" // Lighter shadow in dark mode
+      ? "0 4px 6px rgba(255, 255, 255, 0.1)" 
       : "0 4px 6px rgba(0, 0, 0, 0.1)",
     border: "none",
   };
@@ -142,7 +142,7 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
   <i
     className={`bi bi-star${task.important ? "-fill" : ""}`}
     style={{
-      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  // اگر اولین کارت باشه سفید، در غیر این صورت بسته به مود رنگ رو تنظیم کن
+      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
     }}
   ></i>
 </button>
@@ -156,7 +156,7 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
   <i
     className="bi bi-trash3-fill"
     style={{
-      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  // همانند بالا
+      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
     }}
   ></i>
 </button>
@@ -165,7 +165,7 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
   style={{
     border: "none",
     backgroundColor: "transparent",
-    color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  // همانند بالا
+    color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
     marginRight: "15px",
   }}
 >
