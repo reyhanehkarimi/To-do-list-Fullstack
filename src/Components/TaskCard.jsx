@@ -1,22 +1,31 @@
-import React, { useEffect } from "react";
+/*eslint-disable*/
+
+import React, { useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import FormModal from "./FormModal";
+import DeleteModal from "./DeleteModal";  
+import { deleteTask, updateTask } from "../redux/tasksSlice";
 
 function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
+  const dispatch = useDispatch();
+  const [showFormModal, setShowFormModal] = useState(false);  
+  const [showDeleteModal, setShowDeleteModal] = useState(false);  
+
   const styleCard = useSelector((state) => state.style.styleCard);
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
+  
 
   const deadlineDate = new Date(task.deadline);
   const day = deadlineDate.getDate();
   const month = deadlineDate.toLocaleString("en", { month: "short" });
   const year = deadlineDate.getFullYear();
 
-  useEffect(() => {
-     isDarkMode; 
-  }, [isDarkMode]);
-
   const isFirstCard = index === 0;
+
+  const handleCloseModal = () => setShowFormModal(false);
+  const handleCloseDeleteModal = () => setShowDeleteModal(false);  
 
   const containerStyle = {
     display: "flex",
@@ -40,12 +49,12 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
     backgroundColor: isFirstCard
       ? "rgb(114, 69, 187)"
       : isDarkMode
-      ? "#11012f"  
+      ? "#11012f"
       : "rgba(241, 249, 250, 0.738)",
-    color: isFirstCard ? "white" : isDarkMode ? "#f1f9fa" : "black", 
+    color: isFirstCard ? "white" : isDarkMode ? "#f1f9fa" : "black",
     borderRadius: "10px",
     boxShadow: isDarkMode
-      ? "0 4px 6px rgba(255, 255, 255, 0.1)" 
+      ? "0 4px 6px rgba(255, 255, 255, 0.1)"
       : "0 4px 6px rgba(0, 0, 0, 0.1)",
     border: "none",
   };
@@ -54,129 +63,163 @@ function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
     position: "absolute",
     bottom: styleCard === "grid" ? "14rem" : "10rem",
     left: styleCard === "grid" ? "11rem" : "53rem",
-    backgroundColor: isDarkMode
-      ? "#20174dac"
-      : "rgba(249, 191, 191, 0.695)",
-      color: isDarkMode
-      ? "white"
-      : "rgb(179, 3, 3)",
-    // color: "rgb(179, 3, 3)",
+    backgroundColor: isDarkMode ? "#20174dac" : "rgba(249, 191, 191, 0.695)",
+    color: isDarkMode ? "white" : "rgb(179, 3, 3)",
     padding: "2px 6px",
     borderRadius: "4px",
     fontSize: "10px",
-    width: "50px",
+    maxWidth: "300px",
     height: "22px",
     textAlign: "center",
   };
 
+  const handleConfirmDelete = (taskId) => {
+    dispatch(deleteTask(taskId));  
+    setShowDeleteModal(false); 
+};
+
   return (
-    <div style={containerStyle}>
-      <Card style={cardStyle}>
-        <div style={deadlineStyle}>{task.directory}</div>
-        <Card.Body className="card-body">
-          <Card.Title style={{ fontSize: "15px" }}>{task.title}</Card.Title>
-          <Card.Subtitle style={{ fontSize: "12px", opacity: "0.5", paddingTop: "0.7rem" }}>
-            {task.description}
-          </Card.Subtitle>
-
-          <Container
-            style={{
-              display: "flex",
-              justifyContent: "left",
-              position: "absolute",
-              bottom: "60px",
-              width: "100%",
-            }}
-          >
-            <i className="bi bi-calendar-event me-2"></i>
-            <div style={{ fontSize: "13px" }}>{`${day}/${month}/${year}`}</div>
-          </Container>
-
-          <hr
-            style={{
-              borderTop: isDarkMode
-                ? "3px dashed rgba(255, 255, 255, 0.6)"
-                : "3px dashed #ccc",
-              position: "absolute",
-              bottom: "35px",
-              width: "87%",
-            }}
-          />
-
-          <Container
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              position: "absolute",
-              bottom: "10px",
-              width: "100%",
-            }}
-          >
-            <Button
+    <>
+      <div style={containerStyle}>
+        <Card style={cardStyle}>
+          <div style={deadlineStyle}>{task.directory}</div>
+          <Card.Body className="card-body">
+            <Card.Title style={{ fontSize: "15px" }}>{task.title}</Card.Title>
+            <Card.Subtitle
               style={{
                 fontSize: "12px",
-                backgroundColor: task.completed
-                  ? "rgb(82, 236, 182)"
-                  : "rgb(246, 228, 125)",
-                color: task.completed ? "rgb(3, 74, 3)" : "rgb(135, 74, 1)",
-                borderColor: task.completed
-                  ? "rgb(82, 236, 182)"
-                  : "rgb(246, 228, 125)",
-                fontWeight: "700",
-                borderRadius: "20px",
+                opacity: "0.5",
+                paddingTop: "0.7rem",
               }}
-              onClick={onToggleCompleted}
             >
-              {task.completed ? "Completed" : "Uncompleted"}
-            </Button>
+              {task.description}
+            </Card.Subtitle>
 
-            <div>
-            <button
-  style={{
-    border: "none",
-    backgroundColor: "transparent",
-    marginRight: "5px",
-  }}
-  onClick={onToggleImportant}
->
-  <i
-    className={`bi bi-star${task.important ? "-fill" : ""}`}
-    style={{
-      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
-    }}
-  ></i>
-</button>
+            <Container
+              style={{
+                display: "flex",
+                justifyContent: "left",
+                position: "absolute",
+                bottom: "60px",
+                width: "100%",
+              }}
+            >
+              <i className="bi bi-calendar-event me-2"></i>
+              <div style={{ fontSize: "13px" }}>{`${day}/${month}/${year}`}</div>
+            </Container>
 
-<button
-  style={{
-    border: "none",
-    backgroundColor: "transparent",
-  }}
->
-  <i
-    className="bi bi-trash3-fill"
-    style={{
-      color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
-    }}
-  ></i>
-</button>
+            <hr
+              style={{
+                borderTop: isDarkMode
+                  ? "3px dashed rgba(255, 255, 255, 0.6)"
+                  : "3px dashed #ccc",
+                position: "absolute",
+                bottom: "35px",
+                width: "87%",
+              }}
+            />
 
-<button
-  style={{
-    border: "none",
-    backgroundColor: "transparent",
-    color: isFirstCard ? "white" : isDarkMode ? "white" : "black",  
-    marginRight: "15px",
-  }}
->
-  <i className="bi bi-three-dots-vertical"></i>
-</button>
+            <Container
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                position: "absolute",
+                bottom: "10px",
+                width: "100%",
+              }}
+            >
+              <Button
+                style={{
+                  fontSize: "12px",
+                  backgroundColor: task.completed
+                    ? "rgb(82, 236, 182)"
+                    : "rgb(246, 228, 125)",
+                  color: task.completed ? "rgb(3, 74, 3)" : "rgb(135, 74, 1)",
+                  borderColor: task.completed
+                    ? "rgb(82, 236, 182)"
+                    : "rgb(246, 228, 125)",
+                  fontWeight: "700",
+                  borderRadius: "20px",
+                }}
+                onClick={() => onToggleCompleted(task._id)}
+              >
+                {task.completed ? "Completed" : "Uncompleted"}
+              </Button>
 
-            </div>
-          </Container>
-        </Card.Body>
-      </Card>
-    </div>
+              <div>
+                <button
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    marginRight: "5px",
+                  }}
+                  onClick={() => onToggleImportant(task._id)}
+                >
+                  <i
+                    className={`bi bi-star${task.important ? "-fill" : ""}`}
+                    style={{
+                      color: isFirstCard
+                        ? "white"
+                        : isDarkMode
+                        ? "white"
+                        : "red",
+                    }}
+                  ></i>
+                </button>
+
+                <button
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                  }}
+                  onClick={() => setShowDeleteModal(true)}  
+                >
+                  <i
+                    className="bi bi-trash3-fill"
+                    style={{
+                      color: isFirstCard
+                        ? "white"
+                        : isDarkMode
+                        ? "white"
+                        : "black",
+                    }}
+                  ></i>
+                </button>
+
+                <button
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    color: isFirstCard ? "white" : isDarkMode ? "white" : "black",
+                    marginRight: "15px",
+                  }}
+                  onClick={() => setShowFormModal(true)} 
+                >
+                  <i className="bi bi-three-dots-vertical"></i>
+                </button>
+              </div>
+            </Container>
+          </Card.Body>
+        </Card>
+      </div>
+
+      <FormModal
+        show={showFormModal}
+        handleClose={handleCloseModal}
+        task={task}
+        setShowModal={setShowFormModal}
+      />
+
+      <DeleteModal
+        show={showDeleteModal}
+        onHide={() => setShowDeleteModal(false)}
+        task={task}  
+        onConfirmDelete={handleConfirmDelete} 
+        onTaskUpdate={(updatedTask) => {
+          dispatch(updateTask(updatedTask)); 
+        }}
+      />
+    </>
   );
 }
 

@@ -6,8 +6,8 @@ import AllTasksCard from "../Components/AllTasksCard";
 
 function Home() {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode); 
-  const tasks = useSelector(state => state.tasks); 
-  const allTasks = tasks.filter(task => task); 
+    const tasks = useSelector(state => state.tasks); 
+    const allTasks = tasks.filter(task => task); 
   useEffect(() => {
     if (isDarkMode) {
       console.log("Dark mode enabled");

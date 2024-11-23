@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Dropdown, Form } from 'react-bootstrap';
-import EditModal from './EditModal';
+import FormModal from './FormModal';
 import '../styles/elements-of-all-page.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleStyle } from '../redux/styleCardsSlice';
@@ -137,7 +137,7 @@ className={`Dropdown.Toggle-header ${darkMode ? 'dark-mode' : 'light-mode'}`}   
         </div>
       </Container>
 
-      <EditModal show={showModal} handleClose={handleCloseModal} />
+      <FormModal show={showModal} handleClose={handleCloseModal} />
     </div>
   );
 }

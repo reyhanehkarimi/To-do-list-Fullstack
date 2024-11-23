@@ -1,70 +1,68 @@
-import { Button, Form, Modal } from 'react-bootstrap';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import '../styles/edit-modal-new-directory.css'
+import { Button, Form, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-function EditModalNewDirectory({ show, handleClose }) {
+function EditModalNewDirectory({ show, handleClose, onCreateDirectory }) {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
+  const [directoryName, setDirectoryName] = useState("");
+  const [error, setError] = useState("");
+
+  const handleCreate = () => {
+    if (!directoryName.trim()) {
+      setError("Directory name is required.");
+      return;
+    }
+    if (directoryName.trim().length < 3) {
+      setError("Directory name must be at least 3 characters long.");
+      return;
+    }
+
+    onCreateDirectory(directoryName.trim());
+    setDirectoryName(""); 
+    setError(""); 
+    handleClose(); 
+  };
 
   const modalHeaderStyle = {
     backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
-    padding: "10px",
-    justifyContent: "center",
-    alignItems: "center"
-  };
-
-  const modalBodyStyle = {
-    backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)"
   };
 
   const formControlStyle = {
     backgroundColor: isDarkMode ? "#20174dac" : "white",
-    border: isDarkMode ? "2px solid rgba(120, 53, 153, 0.485)" : "2px solid rgba(120, 53, 153, 0.485)",
-    marginBottom: "0",
-    color: isDarkMode ? "white" : "black",  
-  };
-
-  const buttonStyle = {
-    backgroundColor: isDarkMode ? "rgb(85, 55, 126)" : "rgb(114, 69, 187)",
-    border: "none",
-    fontSize: "15px",
-    width: "68px"
+    border: "2px solid rgba(120, 53, 153, 0.485)",
+    color: isDarkMode ? "white" : "black",
   };
 
   return (
     <Modal centered show={show} onHide={handleClose}>
       <Modal.Header style={modalHeaderStyle} closeButton>
-        <Modal.Title style={{ backgroundColor: "transparent", color: isDarkMode ? "white" : "black" }}>
+        <Modal.Title style={{ color: isDarkMode ? "white" : "black" }}>
           Create new directory
         </Modal.Title>
       </Modal.Header>
-      
-      <Modal.Body style={modalBodyStyle}>
-        <Form style={{ backgroundColor: "transparent" }}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label style={{ backgroundColor: "transparent", color: isDarkMode ? "white" : "black" }}>
+      <Modal.Body style={modalHeaderStyle}>
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label style={{ color: isDarkMode ? "white" : "black" }}>
               Title
             </Form.Label>
-            <Form.Control 
-              style={formControlStyle} 
-              type="text" 
+            <Form.Control
+              style={formControlStyle}
+              type="text"
               placeholder="Enter a directory name"
-              className={isDarkMode ? "dark-placeholder" : "light-placeholder"}
+              value={directoryName}
+              onChange={(e) => setDirectoryName(e.target.value)}
             />
+            {error && (
+              <p style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>
+                {error}
+              </p>
+            )}
           </Form.Group>
         </Form>
       </Modal.Body>
-      
-      <Modal.Footer 
-        style={{
-          justifyContent: "left", 
-          backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)", 
-          paddingTop: "0"
-        }}
-      >
-        <Button style={buttonStyle} onClick={handleClose}>
-          Create
-        </Button>
+      <Modal.Footer style={{ justifyContent: "left", ...modalHeaderStyle }}>
+        <Button onClick={handleCreate} style={{backgroundColor: isDarkMode ? "rgb(114, 69, 187)" : "rgb(114, 69, 187)", border:"none"}}>Create</Button>
       </Modal.Footer>
     </Modal>
   );
