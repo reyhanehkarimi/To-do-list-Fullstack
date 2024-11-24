@@ -101,4 +101,118 @@
   .light-mode .dropdown-sort {
     color: black;
   }
+
+@media (max-width: 1200px) {
+  .parent-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .search-input-header {
+    width: 100%;
+  }
+
+  .add-new-task-header {
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    margin-right: 0;
+    padding: 0.8rem;
+  }
+
+  .Dropdown.Toggle-header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .below-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .count-task {
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .add-new-task-header {
+    font-size: 15px;
+  }
+
+  .Dropdown.Toggle-header {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .parent-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .search-input-header {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .add-new-task-header {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .below-header {
+    margin-top: 1.5rem;
+    align-items: center;
+  }
+
+  .Dropdown.Toggle-header {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .parent-header {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .search-input-header {
+    width: 100%;
+    margin: 0;
+  }
+
+  .Dropdown.Toggle-header {
+    font-size: 14px;
+    padding: 0.5rem;
+  }
+
+  .count-task {
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+
+  .add-new-task-header {
+    font-size: 14px;
+    padding: 0.8rem;
+  }
+
+  .below-header {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+}
+
   

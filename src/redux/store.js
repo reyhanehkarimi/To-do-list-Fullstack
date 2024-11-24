@@ -10,7 +10,7 @@ const store = configureStore({
     darkMode: darkModeReducer,
     style: styleReducer,
     directories: directoryReducer,
-  },
+    },
 });
 
 export default store;

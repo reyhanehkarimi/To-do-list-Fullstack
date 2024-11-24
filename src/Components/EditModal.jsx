@@ -2,6 +2,8 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import '../styles/edit-modal.css';
+import '../styles/responsive-page.css'
+
 
 function EditModal({ show, handleClose }) {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);

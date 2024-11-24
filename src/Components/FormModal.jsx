@@ -9,11 +9,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTask, updateTask } from "../redux/tasksSlice";
 import { useForm, Controller } from "react-hook-form";
 import { addDirectory } from "../redux/directorySlice";
+import '../styles/responsive-page.css'
 
-function FormModal({ show, handleClose, task, setShowModal, directories }) {
+
+function FormModal({ show, handleClose, task, setShowModal, directories=[] }) {
   const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
   const dispatch = useDispatch();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleAddDirectory = () => {
+    const newDirectory = prompt("Enter a new directory name:");
+    if (newDirectory) {
+      dispatch(addDirectory(newDirectory));
+    }
+  };
 
   useEffect(() => {
     if (task) {

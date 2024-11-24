@@ -1,12 +1,11 @@
-// src/redux/directorySlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  directories: ["Main"], // Initial directories
+  directories: ["Main"], 
 };
 
 const directorySlice = createSlice({
-  name: 'directories',
+  name: "directories",
   initialState,
   reducers: {
     addDirectory: (state, action) => {
@@ -20,11 +19,14 @@ const directorySlice = createSlice({
       }
     },
     removeDirectory: (state, action) => {
-      state.directories = state.directories.filter(dir => dir !== action.payload);
+      state.directories = state.directories.filter(
+        (dir) => dir !== action.payload
+      );
     },
   },
 });
 
-export const { addDirectory, updateDirectory, removeDirectory } = directorySlice.actions;
+export const { addDirectory, updateDirectory, removeDirectory } =
+  directorySlice.actions;
 
 export default directorySlice.reducer;

@@ -1,6 +1,8 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import '../styles/responsive-page.css'
+
 
 function EditModalNewDirectory({ show, handleClose, onCreateDirectory }) {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);

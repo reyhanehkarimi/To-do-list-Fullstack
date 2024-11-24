@@ -4,6 +4,8 @@ import { ProgressBar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../redux/darkModeSlice';
+import '../styles/responsive-page.css'
+
 
 function SideBarRight() {
     const dispatch = useDispatch();

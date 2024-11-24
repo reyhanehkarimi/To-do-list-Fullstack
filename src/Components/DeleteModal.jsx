@@ -1,6 +1,8 @@
 import { Button, Modal } from 'react-bootstrap';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import '../styles/responsive-page.css'
+
 
 function DeleteModal({ show, onHide, task, onConfirmDelete }) {
     const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FormModal from "./FormModal";
 import DeleteModal from "./DeleteModal";  
 import { deleteTask, updateTask } from "../redux/tasksSlice";
+import '../styles/responsive-page.css'
+
 
 function TaskCard({ task, index, onToggleCompleted, onToggleImportant }) {
   const dispatch = useDispatch();

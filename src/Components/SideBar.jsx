@@ -7,6 +7,8 @@ import '../styles/sidebar.css';
 import EditModal from './EditModal';
 import EditModalNewDirectory from './ModalAddNewDirectory';
 import FormModal from './FormModal';
+import '../styles/responsive-page.css'
+
 
 function SideBar() {
   const [directories, setDirectories] = useState(["Main"]);

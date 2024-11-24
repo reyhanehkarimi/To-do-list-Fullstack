@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { toggleCompleted, toggleImportant } from '../redux/tasksSlice';
 import TaskCard from './TaskCard';
+import '../styles/responsive-page.css'
 
 function AllTasksCard({ tasks = [] }) { 
   const dispatch = useDispatch();

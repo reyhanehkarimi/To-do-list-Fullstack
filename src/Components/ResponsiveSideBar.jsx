@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import EditModal from './EditModal';
 import EditModalNewDirectory from './ModalAddNewDirectory';
 import '../styles/sidebar.css';
+import '../styles/responsive-page.css'
+
 
 function ResponsiveSideBar({ show, handleClose, handleShow }) {
   const [showModal, setShowModal] = useState(false);

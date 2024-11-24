@@ -5,14 +5,19 @@ import '../styles/elements-of-all-page.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleStyle } from '../redux/styleCardsSlice';
 import { toggleDarkMode } from '../redux/darkModeSlice';
+import{addDirectory} from '../redux/directorySlice'
+
 
 function ElementsOfAllPage() {
   const [date, setDate] = useState(new Date());
-  const [showModal, setShowModal] = useState(false);
+  const [showFormModal, setShowFormModal] = useState(false);
+  
 
   const dispatch = useDispatch();
   const currentStyle = useSelector((state) => state.style.styleCard);
   const darkMode = useSelector((state) => state.style.darkMode);
+const directories = useSelector((state) => state.directories.directories);
+
 
   const handleSetDate = () => {
     setDate(new Date(2024, 10, 6));
@@ -24,8 +29,8 @@ function ElementsOfAllPage() {
     day: 'numeric',
   });
 
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowFormModal(true);
+  const handleCloseModal = () => setShowFormModal(false);
 
   const handleToggleStyle = (selectedStyle) => {
     dispatch(toggleStyle(selectedStyle));
@@ -76,6 +81,7 @@ function ElementsOfAllPage() {
   </Form.Group>
 </Form>
         <div style={{ display: "flex" }}>{formattedDate}</div>
+
         <Button
           className='add-new-task-header'
           style={{
@@ -85,7 +91,7 @@ function ElementsOfAllPage() {
             border: "none",
             marginRight: "2rem"
           }}
-          onClick={handleShowModal}
+          onClick={() => setShowFormModal(true)}
         >
           Add new task
         </Button>
@@ -137,7 +143,7 @@ className={`Dropdown.Toggle-header ${darkMode ? 'dark-mode' : 'light-mode'}`}   
         </div>
       </Container>
 
-      <FormModal show={showModal} handleClose={handleCloseModal} />
+      <FormModal show={showFormModal} handleClose={handleCloseModal} setShowModal={setShowFormModal} directories={directories}/>
     </div>
   );
 }
