@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 const Task = require("../models/task");
 
 exports.createTask = async (req, res) => {

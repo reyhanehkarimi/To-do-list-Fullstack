@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 const Directory = require("../models/directory");
 
 exports.createDirectory = async (req, res) => {

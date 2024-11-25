@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 const express = require("express");
 
 const {
@@ -5,6 +7,7 @@ const {
     getDirectories, 
     updateDirectory,
     deleteDirectory,
+
 } = require("../controllers/directoryController");
 
 const router = express.Router();

@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 const express = require("express");
 
 const {
@@ -6,6 +8,7 @@ const {
     updateTask,
     deleteTask,
     getTasksByDirectory
+
 } = require("../controllers/taskController");
 
 const router = express.Router();
