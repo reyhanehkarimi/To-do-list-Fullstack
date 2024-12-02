@@ -53,9 +53,9 @@
   background-color: rgb(130, 91, 192) !important;
 }
 
-.new-btn-dropdown:hover{
+/* .new-btn-dropdown:hover{
   color: red !important;
-}
+} */
 
 .sidebar.dark-mode .new-btn-dropdown {
   color: #ecf0f1 !important; 
@@ -118,6 +118,7 @@
 
 .dark-mode .light-mode-input::placeholder {
   color: white !important; 
+}
 
 .dark-mode .dropdown-toggle {
   background-color: #20174dac  !important  ;

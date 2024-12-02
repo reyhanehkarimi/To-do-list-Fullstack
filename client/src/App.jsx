@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import SideBar from "./Components/SideBar";
@@ -13,7 +13,8 @@ import UncompletedTasks from "./Pages/UncompletedTasks";
 import ElementsOfAllPage from "./Components/ElementsOfAllPage";
 import EditModal from "./Components/EditModal";
 import MainDirectoryPage from "./Pages/MainDirectoryPage";
-import SecondaryPage from "./Pages/SecondaryPage";
+// import SecondaryPage from "./Pages/DirectoryPage";
+import DirectoryPage from "./Pages/DirectoryPage"; 
 import "./index.css";
 
 function App() {
@@ -67,8 +68,8 @@ function App() {
               <Route path="/completed-tasks" element={<CompletedTasks />} />
               <Route path="/uncompleted-tasks" element={<UncompletedTasks />} />
               <Route path="/main-directory" element={<MainDirectoryPage />} />
-              <Route path="/secondary-directory" element={<SecondaryPage />} />
-            </Routes>
+              {/* <Route path="/secondary-directory" element={<SecondaryPage />} /> */}
+              <Route path="/directory/:id" element={<DirectoryPage />} />            </Routes>
           </Col>
 
           {isLargeScreen && (

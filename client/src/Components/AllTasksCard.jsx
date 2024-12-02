@@ -5,9 +5,10 @@ import { toggleCompleted, toggleImportant } from '../redux/tasksSlice';
 import TaskCard from './TaskCard';
 import '../styles/responsive-page.css'
 
-function AllTasksCard({ tasks = [] }) { 
+function AllTasksCard({ tasks = [], selectedDirectory = "" }) { 
   const dispatch = useDispatch();
 
+  
   if (!tasks.length) {
     return <div>No tasks available</div>;
   }

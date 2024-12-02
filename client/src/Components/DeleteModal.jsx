@@ -3,13 +3,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import '../styles/responsive-page.css'
 
-
 function DeleteModal({ show, onHide, task, onConfirmDelete }) {
     const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
 
     const handleDelete = () => {
-        onConfirmDelete(task._id);  
-    };
+        if (task && task._id) {
+          onConfirmDelete(task._id);  
+          onHide();
+        } else {
+          console.error("Task is undefined or missing _id");
+        }
+      };
 
     const modalHeaderStyle = {
         backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",

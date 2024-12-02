@@ -1,13 +1,15 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import '../styles/responsive-page.css'
-
+import "../styles/responsive-page.css";
 
 function EditModalNewDirectory({ show, handleClose, onCreateDirectory }) {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
   const [directoryName, setDirectoryName] = useState("");
   const [error, setError] = useState("");
+
+  console.log({ onCreateDirectory });
+  
 
   const handleCreate = () => {
     if (!directoryName.trim()) {
@@ -20,40 +22,55 @@ function EditModalNewDirectory({ show, handleClose, onCreateDirectory }) {
     }
 
     onCreateDirectory(directoryName.trim());
-    setDirectoryName(""); 
-    setError(""); 
+    resetForm();
     handleClose(); 
   };
 
-  const modalHeaderStyle = {
-    backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
+  const resetForm = () => {
+    setDirectoryName(""); 
+    setError(""); 
   };
 
-  const formControlStyle = {
-    backgroundColor: isDarkMode ? "#20174dac" : "white",
-    border: "2px solid rgba(120, 53, 153, 0.485)",
-    color: isDarkMode ? "white" : "black",
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); 
+      handleCreate();
+    }
   };
 
   return (
     <Modal centered show={show} onHide={handleClose}>
-      <Modal.Header style={modalHeaderStyle} closeButton>
+      <Modal.Header
+        style={{
+          backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
+        }}
+        closeButton
+      >
         <Modal.Title style={{ color: isDarkMode ? "white" : "black" }}>
           Create new directory
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={modalHeaderStyle}>
+      <Modal.Body
+        style={{
+          backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
+        }}
+      >
         <Form>
           <Form.Group className="mb-3">
             <Form.Label style={{ color: isDarkMode ? "white" : "black" }}>
               Title
             </Form.Label>
             <Form.Control
-              style={formControlStyle}
+              style={{
+                backgroundColor: isDarkMode ? "#20174dac" : "white",
+                border: "2px solid rgba(120, 53, 153, 0.485)",
+                color: isDarkMode ? "white" : "black",
+              }}
               type="text"
               placeholder="Enter a directory name"
               value={directoryName}
               onChange={(e) => setDirectoryName(e.target.value)}
+              onKeyPress={handleKeyPress} 
             />
             {error && (
               <p style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>
@@ -63,8 +80,23 @@ function EditModalNewDirectory({ show, handleClose, onCreateDirectory }) {
           </Form.Group>
         </Form>
       </Modal.Body>
-      <Modal.Footer style={{ justifyContent: "left", ...modalHeaderStyle }}>
-        <Button onClick={handleCreate} style={{backgroundColor: isDarkMode ? "rgb(114, 69, 187)" : "rgb(114, 69, 187)", border:"none"}}>Create</Button>
+      <Modal.Footer
+        style={{
+          justifyContent: "left",
+          backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
+        }}
+      >
+        <Button
+          onClick={handleCreate}
+          style={{
+            backgroundColor: isDarkMode
+              ? "rgb(114, 69, 187)"
+              : "rgb(114, 69, 187)",
+            border: "none",
+          }}
+        >
+          Create
+        </Button>
       </Modal.Footer>
     </Modal>
   );

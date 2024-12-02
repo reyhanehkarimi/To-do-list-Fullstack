@@ -8,7 +8,7 @@ const initialTasks = [
     completed: false,
     important: true,
     deadline: "2024-10-20T00:00:00Z",
-    directory: "Main",
+    directory: "main",
   },
   {
     _id: "2",
@@ -17,7 +17,7 @@ const initialTasks = [
     completed: false,
     important: false,
     deadline: "2024-11-15T00:00:00Z",
-    directory: "Main",
+    directory: "test",
   },
   {
     _id: "3",
@@ -26,7 +26,7 @@ const initialTasks = [
     completed: true,
     important: true,
     deadline: "2024-12-01T00:00:00Z",
-    directory: "Main",
+    directory: "main",
   },
 ];
 
@@ -40,18 +40,26 @@ const tasksSlice = createSlice({
         task.completed = !task.completed;
       }
     },
+
     toggleImportant: (state, action) => {
       const task = state.find((task) => task._id === action.payload);
       if (task) {
         task.important = !task.important;
       }
     },
+
     addTask: (state, action) => {
-      state.push({ ...action.payload, _id: Date.now().toString() });
+      const newTask = { ...action.payload, _id: Date.now().toString() };
+      if (!state.some((task) => task._id === newTask._id)) {
+        state.push(newTask);
+        console.log("Task added successfully:", newTask);
+      } else {
+        console.warn("Duplicate task ID detected:", newTask._id);
+      }
     },
+
     updateTask: (state, action) => {
       const { _id, title, description, completed, important, deadline, directory } = action.payload;
-      
       const index = state.findIndex((task) => task._id === _id);
       if (index !== -1) {
         state[index] = {
@@ -61,15 +69,40 @@ const tasksSlice = createSlice({
           completed,
           important,
           deadline,
-          directory
+          directory,
         };
+      } else {
+        console.warn("Task not found for update:", _id);
       }
     },
-    
+
     deleteTask: (state, action) => {
+      console.log("Deleting task with ID:", action.payload);
       return state.filter((task) => task._id !== action.payload);
     },
-      },
+
+    markAsCompleted: (state, action) => {
+      const task = state.find((task) => task._id === action.payload);
+      if (task) {
+        task.completed = true;
+      }
+    },
+
+    markAsUncompleted: (state, action) => {
+      const task = state.find((task) => task._id === action.payload);
+      if (task) {
+        task.completed = false;
+      }
+    },
+
+    setTaskDirectory: (state, action) => {
+      const { _id, directory } = action.payload;
+      const task = state.find((task) => task._id === _id);
+      if (task) {
+        task.directory = directory;
+      }
+    },
+  },
 });
 
 export const selectCompletedTasks = (state) =>
@@ -81,12 +114,21 @@ export const selectUncompletedTasks = (state) =>
 export const selectImportantTasks = (state) =>
   state.tasks.filter((task) => task.important);
 
+export const selectUnimportantTasks = (state) =>
+  state.tasks.filter((task) => !task.important);
+
+export const selectTasksByDirectory = (state, directory) =>
+  state.tasks.filter((task) => task.directory === directory);
+
 export const {
   toggleCompleted,
   toggleImportant,
   addTask,
   updateTask,
   deleteTask,
+  markAsCompleted,
+  markAsUncompleted,
+  setTaskDirectory,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
