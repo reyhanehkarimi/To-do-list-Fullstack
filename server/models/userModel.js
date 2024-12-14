@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt =require("bcryptjs"); 
-const { type } = require("@testing-library/user-event/dist/cjs/utility/type.js");
-const { STRING } = require("sequelize");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -10,7 +8,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         minlength: 3,
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -22,16 +20,17 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.pre('save', async function(next){
+userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(10); 
         this.password = await bcrypt.hash(this.password, salt);
-        next()
+        next();
     } catch (error) {
-       next(error) 
+        console.error("Error hashing password:", error.message); 
+        next(error);
     }
-})
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

@@ -10,17 +10,22 @@ const {
     getTasksByDirectory
 
 } = require("../controllers/taskController");
+const { getUserTasks } = require("../controllers/userController");
+const { authenticate } = require("../middleWares/authMiddleware");
+
 
 const router = express.Router();
 
-router.post("/", createTask);
+router.post("/",authenticate, createTask);
 
-router.get("/", getTasks);
+router.get("/",authenticate, getTasks);
 
-router.get("/:directoryId/tasks", getTasksByDirectory);
+router.get("/:directoryId/tasks",authenticate, getTasksByDirectory);
 
-router.put("/:id", updateTask);
+router.put("/:id",authenticate, updateTask);
 
-router.delete("/:id", deleteTask);
+router.delete("/:id",authenticate, deleteTask);
+
+router.get("/user/:userId",authenticate, getUserTasks)
 
 module.exports = router;

@@ -18,3 +18,4 @@ router.put("/:id", updateDirectory);
 router.delete("/:id", deleteDirectory);
 
 module.exports = router;
+

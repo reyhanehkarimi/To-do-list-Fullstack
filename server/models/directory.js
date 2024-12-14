@@ -1,4 +1,3 @@
-/*eslint-disable*/
 
 const mongoose = require("mongoose");
 
@@ -9,4 +8,11 @@ const directorySchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model("directory", directorySchema)
+module.exports = mongoose.model("directory", directorySchema);
+
+
+
+
+
+
+

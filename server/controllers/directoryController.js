@@ -1,4 +1,3 @@
-/*eslint-disable*/
 
 const Directory = require("../models/directory");
 
@@ -12,6 +11,7 @@ exports.createDirectory = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 exports.getDirectories = async (req, res) => {
     try {
