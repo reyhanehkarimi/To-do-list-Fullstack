@@ -1,8 +1,7 @@
-/*eslint-disable*/
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import React, { useState, useEffect } from "react";
+
 import SideBar from "./Components/SideBar";
 import ResponsiveSideBar from "./Components/ResponsiveSideBar";
 import SideBarRight from "./Components/SideBarRightPage";
@@ -13,21 +12,23 @@ import UncompletedTasks from "./Pages/UncompletedTasks";
 import ElementsOfAllPage from "./Components/ElementsOfAllPage";
 import EditModal from "./Components/EditModal";
 import MainDirectoryPage from "./Pages/MainDirectoryPage";
-// import SecondaryPage from "./Pages/DirectoryPage";
-import DirectoryPage from "./Pages/DirectoryPage"; 
-import "./index.css";
+import DirectoryPage from "./Pages/DirectoryPage";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [showResponsiveSidebar, setShowResponsiveSidebar] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1022);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+    localStorage.getItem("isUserLoggedIn") === "true"
+  );
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
   const handleShowSidebar = () => setShowResponsiveSidebar(true);
   const handleCloseSidebar = () => setShowResponsiveSidebar(false);
-
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 1022);
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,6 +38,16 @@ function App() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleLogin = () => {
+    setIsUserLoggedIn(true);
+    localStorage.setItem("isUserLoggedIn", "true");
+  };
+
+  const handleLogout = () => {
+    setIsUserLoggedIn(false);
+    localStorage.removeItem("isUserLoggedIn");
+  };
 
   return (
     <BrowserRouter>
@@ -62,14 +73,28 @@ function App() {
             )}
 
             <ElementsOfAllPage onEditClick={handleShowModal} />
+
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/important-tasks" element={<ImportantTasks />} />
-              <Route path="/completed-tasks" element={<CompletedTasks />} />
-              <Route path="/uncompleted-tasks" element={<UncompletedTasks />} />
-              <Route path="/main-directory" element={<MainDirectoryPage />} />
-              {/* <Route path="/secondary-directory" element={<SecondaryPage />} /> */}
-              <Route path="/directory/:id" element={<DirectoryPage />} />            </Routes>
+              <Route
+                path="/signup"
+                element={<Signup onLogin={handleLogin} />}
+              />
+              <Route
+                path="/login"
+                element={<Login onLogin={handleLogin} />}
+              />
+
+              <Route
+                path="*"
+                element={
+                  isUserLoggedIn ? (
+                    <ProtectedRoutes />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+            </Routes>
           </Col>
 
           {isLargeScreen && (
@@ -81,6 +106,20 @@ function App() {
       </Container>
       <EditModal show={showModal} handleClose={handleCloseModal} />
     </BrowserRouter>
+  );
+}
+
+function ProtectedRoutes() {
+  return (
+    <Routes>
+      <Route path="/home" element={<Home />} />
+      <Route path="/important-tasks" element={<ImportantTasks />} />
+      <Route path="/completed-tasks" element={<CompletedTasks />} />
+      <Route path="/uncompleted-tasks" element={<UncompletedTasks />} />
+      <Route path="/main-directory" element={<MainDirectoryPage />} />
+      <Route path="/directory/:id" element={<DirectoryPage />} />
+      <Route path="*" element={<Navigate to="/home" />} />
+    </Routes>
   );
 }
 

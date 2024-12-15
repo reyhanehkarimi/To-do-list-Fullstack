@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -20,11 +20,13 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+// هش کردن پسورد قبل از ذخیره به دیتابیس
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
         const salt = await bcrypt.genSalt(10); 
-        this.password = await bcrypt.hash(this.password, salt);
+        this.password = await bcrypt.hash(this.password.trim(), salt); // حذف فضاهای اضافی
+        this.email = this.email.toLowerCase(); // ذخیره ایمیل به صورت lowercase
         next();
     } catch (error) {
         console.error("Error hashing password:", error.message); 
