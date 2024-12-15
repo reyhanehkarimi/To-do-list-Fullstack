@@ -1,12 +1,26 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import '../styles/responsive-page.css';
 
 function LogOutModal({ show, onHide }) {
     const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // حذف اطلاعات کاربر (مثل توکن و وضعیت لاگین)
+    const handleLogout = () => {
+        // فرض کنید که توکن را در localStorage ذخیره کرده‌اید
+        localStorage.removeItem("userToken"); // حذف توکن از localStorage
+        dispatch({ type: "LOGOUT" }); // dispatch action برای لاگ‌اوت (اگر از Redux استفاده می‌کنید)
+        
+        // هدایت به صفحه لاگین
+        navigate("/login");
+
+        // بستن مدال
+        onHide();
+    };
 
     const modalHeaderStyle = {
         backgroundColor: isDarkMode ? "#11012f" : "rgba(201, 206, 250, 0.7)",
@@ -24,11 +38,6 @@ function LogOutModal({ show, onHide }) {
         border: "none",
         fontSize: "15px",
         maxWidth: "100px",
-    };
-
-    const handleConfirmLogout = () => {
-        navigate("/login");
-        onHide();
     };
 
     return (
@@ -53,7 +62,7 @@ function LogOutModal({ show, onHide }) {
                 >
                     Cancel
                 </Button>
-                <Button style={buttonStyle} onClick={handleConfirmLogout}>
+                <Button style={buttonStyle} onClick={handleLogout}>
                     Confirm
                 </Button>
             </Modal.Footer>

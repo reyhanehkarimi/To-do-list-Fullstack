@@ -85,15 +85,67 @@ function App() {
               />
 
               <Route
-                path="*"
+                path="/home"
                 element={
                   isUserLoggedIn ? (
-                    <ProtectedRoutes />
+                    <Home />
                   ) : (
-                    <Navigate to="/login" />
+                    <Navigate to="/login" replace />
                   )
                 }
               />
+              <Route
+                path="/important-tasks"
+                element={
+                  isUserLoggedIn ? (
+                    <ImportantTasks />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+              <Route
+                path="/completed-tasks"
+                element={
+                  isUserLoggedIn ? (
+                    <CompletedTasks />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+              <Route
+                path="/uncompleted-tasks"
+                element={
+                  isUserLoggedIn ? (
+                    <UncompletedTasks />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+              <Route
+                path="/main-directory"
+                element={
+                  isUserLoggedIn ? (
+                    <MainDirectoryPage />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+              <Route
+                path="/directory/:id"
+                element={
+                  isUserLoggedIn ? (
+                    <DirectoryPage />
+                  ) : (
+                    <Navigate to="/login" replace />
+                  )
+                }
+              />
+
+              <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </Col>
 
@@ -106,20 +158,6 @@ function App() {
       </Container>
       <EditModal show={showModal} handleClose={handleCloseModal} />
     </BrowserRouter>
-  );
-}
-
-function ProtectedRoutes() {
-  return (
-    <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/important-tasks" element={<ImportantTasks />} />
-      <Route path="/completed-tasks" element={<CompletedTasks />} />
-      <Route path="/uncompleted-tasks" element={<UncompletedTasks />} />
-      <Route path="/main-directory" element={<MainDirectoryPage />} />
-      <Route path="/directory/:id" element={<DirectoryPage />} />
-      <Route path="*" element={<Navigate to="/home" />} />
-    </Routes>
   );
 }
 
