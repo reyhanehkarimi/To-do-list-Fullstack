@@ -20,16 +20,16 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-// هش کردن پسورد قبل از ذخیره به دیتابیس
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
-        const salt = await bcrypt.genSalt(10); 
-        this.password = await bcrypt.hash(this.password.trim(), salt); // حذف فضاهای اضافی
-        this.email = this.email.toLowerCase(); // ذخیره ایمیل به صورت lowercase
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        console.log("Hashed password:", this.password); 
+        this.email = this.email.toLowerCase();
         next();
     } catch (error) {
-        console.error("Error hashing password:", error.message); 
+        console.error("Error hashing password:", error.message);
         next(error);
     }
 });
